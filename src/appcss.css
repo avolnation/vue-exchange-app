@@ -1,0 +1,19 @@
+@font-face{
+    font-family: "Google Sans";
+    src:url('/GoogleSans-Regular.ttf') format('.ttf');
+}
+body{
+    font-family: 'Google Sans';
+    margin-top: 0px;
+    color: #f7e7ce;
+    margin-left: 0px;
+}
+.btn{
+    border: none;
+    background-color: none;
+    background: none;
+    padding: 0px;
+}
+.btn:hover{
+    cursor: pointer;
+}
