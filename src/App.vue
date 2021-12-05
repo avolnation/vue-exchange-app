@@ -44,6 +44,7 @@
           <input
             class="currexBlock"
             type="number"
+			min="0"
             default=" "
             v-model="currAmount"
           />
@@ -70,7 +71,7 @@
         <div id="converted">
           <p
             v-if="
-              currAmount == 0 || firstCurrAbbr == '' || secondCurrAbbr == ''
+              currAmount == 0 || currAmount < 0 || firstCurrAbbr == '' || secondCurrAbbr == ''
             "
             class="infoo"
           >
