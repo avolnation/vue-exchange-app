@@ -57,6 +57,7 @@
             @sendData="pushAbbrData"
           />
         </div>
+        <button @click="swapCurrencies" class="swapButton">Swap</button>
         <div class="column">
           <label>To</label>
           <SelectCurrencies
@@ -211,6 +212,24 @@ export default {
     },
     closeModal() {
       this.isModalVisible = false;
+    },
+    swapCurrencies() {
+      let firstSel = document.getElementById("firstSelector").__vue__.$data.selected;
+      let secondSel = document.getElementById("secondSelector").__vue__.$data.selected;
+      let first = {
+        id: "firstSelector",
+        abbr: firstSel,
+      }
+      let second = {
+        id: "secondSelector",
+        abbr: secondSel,
+      }
+      let buff = firstSel;
+      document.getElementById("firstSelector").__vue__.$data.selected = secondSel;
+      document.getElementById("secondSelector").__vue__.$data.selected = buff;
+      this.pushAbbrData(first);
+      this.pushAbbrData(second);
+      console.log(firstSel, secondSel);
     },
   },
 };
