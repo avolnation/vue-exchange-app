@@ -44,7 +44,7 @@
           <input
             class="currexBlock"
             type="number"
-			min="0"
+            min="0"
             default=" "
             v-model="currAmount"
           />
@@ -57,7 +57,11 @@
             @sendData="pushAbbrData"
           />
         </div>
-        <button @click="swapCurrencies" class="swapButton">Swap</button>
+        <div class="column" :style="{'min-width': '0px'}">
+          <label> &nbsp; </label>
+        <button @click="swapCurrencies" class="swapButton">
+          <img src="./swap.svg"/></button>
+        </div>
         <div class="column">
           <label>To</label>
           <SelectCurrencies
@@ -72,7 +76,10 @@
         <div id="converted">
           <p
             v-if="
-              currAmount == 0 || currAmount < 0 || firstCurrAbbr == '' || secondCurrAbbr == ''
+              currAmount == 0 ||
+              currAmount < 0 ||
+              firstCurrAbbr == '' ||
+              secondCurrAbbr == ''
             "
             class="infoo"
           >
@@ -214,18 +221,21 @@ export default {
       this.isModalVisible = false;
     },
     swapCurrencies() {
-      let firstSel = document.getElementById("firstSelector").__vue__.$data.selected;
-      let secondSel = document.getElementById("secondSelector").__vue__.$data.selected;
+      let firstSel =
+        document.getElementById("firstSelector").__vue__.$data.selected;
+      let secondSel =
+        document.getElementById("secondSelector").__vue__.$data.selected;
       let first = {
         id: "firstSelector",
-        abbr: firstSel,
-      }
+        abbr: secondSel,
+      };
       let second = {
         id: "secondSelector",
-        abbr: secondSel,
-      }
+        abbr: firstSel,
+      };
       let buff = firstSel;
-      document.getElementById("firstSelector").__vue__.$data.selected = secondSel;
+      document.getElementById("firstSelector").__vue__.$data.selected =
+        secondSel;
       document.getElementById("secondSelector").__vue__.$data.selected = buff;
       this.pushAbbrData(first);
       this.pushAbbrData(second);
@@ -235,7 +245,18 @@ export default {
 };
 </script>
 <style>
-.steps{
+.swapButton{
+  width: fit-content;
+  background-color: #f7e7ce;
+  border: none;
+  border-radius: 5px;
+  box-shadow: rgb(0 17 51 / 30%) 0px 3px 15px;
+}
+.swapButton:hover{
+  cursor: pointer;
+  background-color: #cfc1ab;
+}
+.steps {
   font-size: 1.3em;
 }
 #converted {
@@ -291,6 +312,7 @@ export default {
   padding-top: 5px;
 }
 #header {
+  margin: 10px;
   padding-left: 5px;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
